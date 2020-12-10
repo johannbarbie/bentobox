@@ -262,7 +262,7 @@ contract('LendingPair', (accounts) => {
 
     it('should not allow closed liquidate with invalid swapper', async () => {
         let invalidSwapper = await SushiSwapSwapper.new(bentoBox.address, factory.address, { from: accounts[0] });
-        truffleAssert.reverts(pair.liquidate([alice], [e18(10)], bob, invalidSwapper.address, false, { from: bob }), 'LendingPair: Invalid swapper');
+        await truffleAssert.reverts(pair.liquidate([alice], [e18(10)], bob, invalidSwapper.address, false, { from: bob }), 'LendingPair: Invalid swapper');
     });
 
     it('should allow closed liquidate', async () => {
